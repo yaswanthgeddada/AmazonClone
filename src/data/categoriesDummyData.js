@@ -1,5 +1,6 @@
 export const categories = [
   {
+    category: "electronics",
     title: "Top Picks for your home",
     images1: {
       url: "/assets/cardGroups/grp1ac.jpg",
@@ -20,6 +21,8 @@ export const categories = [
   },
 
   {
+    category: "electronics",
+
     title: "control your lights | Ask Alexa",
     images1: {
       url: "/assets/cardGroups/grp2bulbs.jpg",
@@ -40,6 +43,8 @@ export const categories = [
   },
 
   {
+    category: "clothes",
+
     title: "Launching Spring Summer'21",
     images1: {
       url: "/assets/cardGroups/grp3footware.jpg",
@@ -59,6 +64,8 @@ export const categories = [
     },
   },
   {
+    category: "kitchen",
+
     title: "Cookware & dining",
     images1: {
       url: "/assets/cardGroups/grp4bottles.jpg",

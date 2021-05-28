@@ -1,19 +1,21 @@
 import React from "react";
 import SingleProductCard from "./SingleProductCard";
 
-import { toysData } from "../data/toysDummydata";
-
-const ProductsSlide = () => {
+const ProductsSlide = ({ data, slideTitle }) => {
   return (
-    <div className="bg-gray-100 mx-10 shadow-lg h-96 rounded mb-20 pt-4 px-4">
-      <div className="text-lg">Trending Toys for your family</div>
-      <div className="flex overflow-x-scroll">
-        {toysData.map((toy) => (
+    <div className="bg-gray-100 mx-10 shadow-lg  rounded mb-20 pt-4 px-4">
+      <div className="text-lg">
+        {slideTitle || "Trending top picks for you :"}
+      </div>
+      <div className="flex p-4 overflow-x-scroll">
+        {data?.map((toy) => (
           <SingleProductCard
-            productImage={toy.ProductImage}
+            key={toy.title}
+            productImage={toy.imageUrl}
             rating={toy.rating}
             price={toy.price}
-            title={toy.ProductTitle}
+            title={toy.title}
+            productId={toy?.productId}
           />
         ))}
       </div>
