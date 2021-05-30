@@ -8,9 +8,10 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
+  const [cartItemsLength, setCartItemsLength] = useState(0);
+
   const addProductToCart = async (product, customerId, quantity) => {
     let item = { ...product, customerId: customerId, quantity: quantity };
-
     await firestore
       .collection("cart")
       .add(item)
@@ -40,6 +41,8 @@ export function CartProvider({ children }) {
     getCartItems,
     addProductToCart,
     deleteItemInCart,
+    setCartItemsLength,
+    cartItemsLength,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

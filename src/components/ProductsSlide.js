@@ -3,7 +3,7 @@ import SingleProductCard from "./SingleProductCard";
 
 const ProductsSlide = ({ data, slideTitle }) => {
   return (
-    <div className="bg-gray-100 mx-10 shadow-lg  rounded mb-20 pt-4 px-4">
+    <div className="bg-gray-100 md:mx-10  shadow-lg  rounded mb-20 pt-4 px-4">
       <div className="text-lg">
         {slideTitle || "Trending top picks for you :"}
       </div>

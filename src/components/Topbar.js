@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { BiCart } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -8,42 +8,51 @@ import { useCart } from "./../context/CartContext";
 
 const Topbar = (props) => {
   const { currentUser } = useAuth();
-  const { getCartItems } = useCart();
-  const [itemsInCart, setItemsInCart] = useState();
+  const { getCartItems, cartItemsLength, setCartItemsLength } = useCart();
+  const [searchTerm, setSerachTem] = useState("");
 
   useEffect(() => {
     const getItemsNumber = async () => {
       const result = await getCartItems(currentUser.uid);
-      setItemsInCart(result.length);
+      setCartItemsLength(result.length);
     };
 
     getItemsNumber();
-  }, [currentUser.uid, getCartItems]);
+  }, [currentUser.uid, getCartItems, setCartItemsLength]);
 
   return (
-    <div className="flex justify-between px-4 bg-gray-900 text-white items-center">
-      <div className="flex items-center w-96">
+    <div className="flex justify-between px-4 mx-0 bg-gray-900 text-white items-center">
+      <div className="md:flex md:items-center sm:hidden ">
         <Link to="/">
-          <div className="w-18">
-            <img src="/assets/logo.png" alt="" className="h-14" />
+          <div className="object-contain">
+            <img
+              src="/assets/logo.png"
+              alt=""
+              className="h-14 object-contain w-56"
+            />
           </div>
         </Link>
         <div className="flex flex-col mx-5 w-5">
           <p>{props.AddressLline2}</p>
         </div>
       </div>
-      <div className="w-full ">
+      <div className="w-full md:flex md:flex-col hidden">
         <div className="px-2 flex items-center">
           <input
-            className="w-full px-2 mx-4  py-2 rounded-xl text-black focus:outline-none focus:ring-2 ring-yellow-400 ring-opacity-80  "
+            onChange={(e) => setSerachTem(e.target.value)}
+            className="sm:w-1/4 md:w-full px-2 mx-4  py-2 rounded-xl text-black focus:outline-none focus:ring-2 ring-yellow-400 ring-opacity-80  "
             type="text"
+            value={searchTerm}
           />
-          <div className="bg-yellow-500  h-full w-10 p-3 -mx-8 rounded-r-lg hover:bg-yellow-600 cursor-pointer">
+          <Link
+            to={`/search/${searchTerm}`}
+            className="bg-yellow-500  h-full w-10 p-3 -mx-8 rounded-r-lg hover:bg-yellow-600 cursor-pointer"
+          >
             <ImSearch size="20" />
-          </div>
+          </Link>
         </div>
       </div>
-      <div className="w-56 mx-20">
+      <div className="md:w-56 md:mx-20">
         <DropDown />
       </div>
       <div className="px-10">
@@ -53,7 +62,7 @@ const Topbar = (props) => {
         >
           <BiCart size="35" />
           <div className="absolute top-0 mx-3 text-yellow-500 font-bold">
-            <p>{itemsInCart}</p>
+            <p>{cartItemsLength}</p>
           </div>
         </Link>
       </div>

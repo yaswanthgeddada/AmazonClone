@@ -12,6 +12,9 @@ const ProductsManagement = lazy(() => import("./pages/ProductsManagement"));
 const SearchProducts = lazy(() => import("./pages/SearchProducts"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Orders = lazy(() => import("./pages/Orders"));
+const SearchForProductsTopBar = lazy(() =>
+  import("./pages/SearchForProductsTopBar")
+);
 
 function App() {
   const { currentUser } = useAuth();
@@ -57,6 +60,11 @@ function App() {
                 path="/orders"
                 exact
                 component={!currentUser ? Login : Orders}
+              />
+              <Route
+                path="/search/:searchTerm"
+                exact
+                component={!currentUser ? Login : SearchForProductsTopBar}
               />
               <Route
                 path="/signup"

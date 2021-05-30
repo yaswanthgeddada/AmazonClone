@@ -8,9 +8,11 @@ import ReviewCard from "../components/ReviewCard";
 import { useParams } from "react-router";
 import { getProductById, addProductToCart } from "../firebase/productService";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 const Product = () => {
   const { currentUser } = useAuth();
+  const { cartItemsLength, setCartItemsLength } = useCart();
   const productId = useParams().id;
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +35,7 @@ const Product = () => {
 
     await addProductToCart(product, userId, quantity.current.value);
     setIsLoading(false);
+    setCartItemsLength(cartItemsLength + 1);
   };
 
   return (

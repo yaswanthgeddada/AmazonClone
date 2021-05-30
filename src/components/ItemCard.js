@@ -2,7 +2,7 @@ import React from "react";
 
 const ItemCard = ({ item }) => {
   return (
-    <div className="w-full flex m-3 h-40 text-green-900 ">
+    <div className="w-full flex m-3 h-full text-green-900 ">
       <div className="w-80 ">
         <img
           src={
@@ -25,6 +25,7 @@ const ItemCard = ({ item }) => {
             max="4"
             className="w-20 py-0"
             value={item.quantity}
+            readOnly
           />
           <div> | </div>
           <div className=" hover:text-red-400 cursor-pointer">Delete</div>

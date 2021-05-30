@@ -5,13 +5,16 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import AddtoCartCard from "./../components/AddtoCartCard";
 import { addOrder } from "../firebase/productService";
+import { sendEmail } from "../firebase/emailService";
+import { useUser } from "./../context/UserContext";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState();
   const [totalPrice, setTotalPrice] = useState();
 
-  const { getCartItems, deleteItemInCart } = useCart();
+  const { getCartItems, deleteItemInCart, setCartItemsLength } = useCart();
   const { currentUser } = useAuth();
+  const { getCurrentUserProfile } = useUser();
 
   const getCartItemss = useCallback(async () => {
     const result = await getCartItems(currentUser.uid);
@@ -44,9 +47,10 @@ const Cart = () => {
     });
 
     getCartItemss();
+    setCartItemsLength(0);
 
     console.log("products added");
-  }, [cartItems, deleteItemInCart, getCartItemss]);
+  }, [cartItems, deleteItemInCart, getCartItemss, setCartItemsLength]);
 
   useEffect(() => {
     getCartItemss();

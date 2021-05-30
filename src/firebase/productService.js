@@ -20,6 +20,35 @@ export const getAllProducts = async () => {
   return products;
 };
 
+export const getAllProductsOnSearch = async (seachTerm) => {
+  const result = await firestore.collection("produts").get();
+
+  const products = result.docs.map((doc) => ({
+    ...doc.data(),
+    productId: doc.id,
+  }));
+
+  const FilteredProducts = products.filter((p) =>
+    p.title.toLowerCase().includes(seachTerm.toLowerCase())
+  );
+  console.log(FilteredProducts);
+  return FilteredProducts;
+};
+
+export const getProductsOfSeller = async (sellerId) => {
+  const result = await firestore
+    .collection("produts")
+    .where("sellerId", "==", sellerId)
+    .get();
+
+  const products = result.docs.map((doc) => ({
+    ...doc.data(),
+    productId: doc.id,
+  }));
+
+  return products;
+};
+
 export const getProductById = async (productId) => {
   const result = await firestore.collection("produts").doc(productId).get();
   const product = { ...result.data(), productId };
@@ -117,5 +146,14 @@ export const getOrders = async (userId, forWho) => {
     id: order.id,
   }));
 
+  console.log(orders);
   return orders;
+};
+
+export const changeOrderStatus = async (orderId, status) => {
+  const result = await firestore.collection("orders").doc(orderId);
+
+  return result
+    .update({ status: status })
+    .then(() => console.log("Status Updated"));
 };

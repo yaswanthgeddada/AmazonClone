@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = () => {
   const history = useHistory();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const email = useRef("");
   const password = useRef("");
 
@@ -15,6 +17,7 @@ const Login = () => {
   }, [currentUser]);
 
   const submitHandler = async () => {
+    setIsLoading(true);
     if (password.current.value !== "" && email.current.value !== "") {
       try {
         await login(email.current.value, password.current.value);
@@ -26,6 +29,7 @@ const Login = () => {
     } else {
       setError("Invalid");
     }
+    setIsLoading(false);
   };
 
   const resetPasswordHandler = async () => {
@@ -76,11 +80,14 @@ const Login = () => {
           to-yellow-400 rounded-md
            border py-1 text-sm
            focus:outline-none
-          hover:to-yellow-500 
+          hover:to-yellow-500
            "
               onClick={submitHandler}
             >
-              Continue
+              <div className="flex justify-center items-center space-x-2">
+                {isLoading && <CircularProgress size={16} />}
+                <p>Continue</p>
+              </div>
             </button>
 
             <div

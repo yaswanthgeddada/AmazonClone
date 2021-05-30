@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Signup = () => {
   const history = useHistory();
 
   const [error, setError] = useState("");
   const [isloading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const email = useRef("");
   const password = useRef("");
@@ -19,6 +21,7 @@ const Signup = () => {
   }, [currentUser]);
 
   const submitHandler = async () => {
+    setLoading(true);
     if (password.current.value === confirmPassword.current.value) {
       try {
         setIsLoading(true);
@@ -32,6 +35,7 @@ const Signup = () => {
     }
 
     setIsLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -81,7 +85,10 @@ const Signup = () => {
             disabled={isloading}
             onClick={submitHandler}
           >
-            Continue
+            <div className="flex justify-center items-center space-x-2">
+              {loading && <CircularProgress size={16} />}
+              <p>Continue</p>
+            </div>
           </button>
 
           <p className="py-4 text-xs">

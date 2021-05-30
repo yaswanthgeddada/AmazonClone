@@ -11,7 +11,7 @@ const SingleProductCard = (props) => {
         <div className="h-36 w-40">
           <img
             src={props.productImage || "/assets/Rhombus.gif"}
-            className="rounded-lg shadow h-36 w-40 pt-5"
+            className="rounded-lg shadow h-36 w-40 pt-5 object-contain"
             alt=""
           />
         </div>

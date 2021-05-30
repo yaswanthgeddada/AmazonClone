@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import {
   getProductByCategory,
   getAllProducts,
+  getAllProductsOnSearch,
 } from "../firebase/productService";
 import Topbar from "../components/Topbar";
 import SingleProductCard from "../components/SingleProductCard";

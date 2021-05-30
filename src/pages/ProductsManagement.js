@@ -6,12 +6,13 @@ import { LinearProgress } from "@material-ui/core";
 import {
   appNewProduct,
   addImageToStorageBucket,
-  getAllProducts,
+  getProductsOfSeller,
 } from "../firebase/productService";
 import OrdersForSeller from "./../components/OrdersForSeller";
 
 const ProductsManagement = () => {
   const userId = useParams().userId;
+
   const [content, setContent] = useState();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +29,7 @@ const ProductsManagement = () => {
   console.log(userId);
 
   const getAllProductsFromDb = async () => {
-    const products = await getAllProducts();
+    const products = await getProductsOfSeller(userId);
     setProducts(products);
     setContent("myProducts");
     console.log("all products :", products);
@@ -37,7 +38,7 @@ const ProductsManagement = () => {
   useEffect(() => {
     console.clear();
     getAllProductsFromDb();
-  }, []);
+  }, [userId]);
 
   const addProductImage = async (e) => {
     if (e.target.files[0]) {
@@ -174,11 +175,11 @@ const ProductsManagement = () => {
   };
 
   return (
-    <div className="flex h-full flex-col bg-gradient-to-b from-gray-400 ">
-      <div className="text-3xl text-center text-white font-bold drop-shadow ">
+    <div className="flex flex-col    bg-gradient-to-b from-gray-400 ">
+      <div className="text-3xl text-center h-24  text-white font-bold drop-shadow  ">
         Manage your products
       </div>
-      <div className="mx-32 mt-3 bg-white h-full overflow-x-hidden ">
+      <div className="md:mx-32 mt-3 bg-white overflow-x-hidden  ">
         <div className="sticky top-0 h-10 bg-gray-600 flex items-center w-full z-20 ">
           <div
             className="text-white mx-2 cursor-pointer"
