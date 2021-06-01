@@ -12,7 +12,7 @@ const AddtoCartCard = ({
   orderItems,
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded-xl h-96 ">
+    <div className="bg-white shadow-lg rounded-xl md:w-96 w-80 md:h-96 h-56 ">
       <div className="flex flex-col px-8 py-10">
         <div className="flex flex-row p-2">
           {totalSum > 0 && (

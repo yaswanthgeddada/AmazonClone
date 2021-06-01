@@ -2,8 +2,8 @@ import React from "react";
 
 const ItemCard = ({ item }) => {
   return (
-    <div className="w-full flex m-3 h-full text-green-900 ">
-      <div className="w-80 ">
+    <div className="w-full   flex md:flex-row flex-col m-3 h-full text-green-900 ">
+      <div className="w-80">
         <img
           src={
             item.imageUrl || "/assets/products/electronics/wiprosmartbulb.jpg"

@@ -41,7 +41,7 @@ const Product = () => {
   return (
     <div>
       {product ? (
-        <div className="flex mt-20 h-full">
+        <div className="flex md:flex-row flex-col-reverse justify-center items-center md:mt-20 h-full">
           {/* image */}
           <div className="px-10 w-2/5">
             <img
@@ -52,7 +52,7 @@ const Product = () => {
           </div>
 
           {/* product details section */}
-          <div className="flex flex-col w-2/5 ">
+          <div className="flex flex-col md:w-2/5 w-4/5 ">
             <div className="text-lg my-2">{product?.title}</div>
             <div className="mb-2">
               <StarRatings
@@ -90,7 +90,7 @@ const Product = () => {
           </div>
 
           {/* add to cart part */}
-          <div className="mr-40 ml-20 w-96">
+          <div className="md:mr-40 mr-10 ml-20 w-96">
             <AddtoCartCard
               addItemToCart={addItemToCart}
               isLoading={isLoading}
@@ -105,7 +105,7 @@ const Product = () => {
       <br />
       <hr />
 
-      <div className="my-20  mx-56 ">
+      <div className="my-20  md:mx-56 ">
         {/* <AddNewReview /> */}
         <ReviewCard />
       </div>

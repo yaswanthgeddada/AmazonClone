@@ -58,7 +58,7 @@ const Cart = () => {
 
   return (
     <div>
-      <div className=" bg-gray-200 h-screen overflow-x-hidden px-10 flex">
+      <div className=" bg-gray-200 h-screen overflow-x-hidden px-10 flex flex-col-reverse	 md:flex-row space-y-5">
         <div className="  rounded-lg mt-5 w-full  bg-white p-5 mb-5 ">
           {totalPrice > 0 &&
             cartItems.map((item) => (
@@ -76,7 +76,7 @@ const Cart = () => {
             )}
           </div>
         </div>
-        <div className="w-1/4 mx-10 mt-5 sticky">
+        <div className="w-1/4 md:mx-10  mt-5 sticky">
           {cartItems && (
             <AddtoCartCard
               totalSum={totalPrice}

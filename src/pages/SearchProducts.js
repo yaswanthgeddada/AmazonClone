@@ -38,7 +38,7 @@ const SearchProducts = () => {
         All the Trending Products on{" "}
         <i className="text-red-400 font-semibold">{searchTerm}</i> :{" "}
       </div>
-      <div className="grid grid-cols-4 gap-10 mx-20 pb-10 mt-5">
+      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-10 mx-20 pb-10 mt-5">
         {products &&
           products.map((p) => (
             <SingleProductCard

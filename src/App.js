@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import { useAuth } from "./context/AuthContext";
+import Loading from "./pages/Loading";
 
 const Home = lazy(() => import("./pages/Home"));
 const Product = lazy(() => import("./pages/Product"));
@@ -26,7 +27,7 @@ function App() {
   return (
     <div className="h-screen w-screen overflow-x-hidden flex flex-col">
       <Router>
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense fallback={<Loading />}>
           <div className="sticky z-50 top-0">{currentUser && <Topbar />}</div>
           <div className="h-full w-full">
             <Switch>
